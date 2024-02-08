@@ -2,6 +2,7 @@
 public class MainEquipo {
 
 	public static void main(String[] args) {
+		/*
 		Equipo e1 = new Equipo("Esp", new String[3]);
 		
 		e1.jugadores[0] = "uno";
@@ -26,6 +27,14 @@ public class MainEquipo {
 		System.out.println("La lista de jugadores es igual? " + e1.esIgualListaJugadores(e2.jugadores));
 		
 		System.out.println("El equipo es igual al pasado por parametro? " + e1.esIgual(e2));
+		*/
+		
+		Equipo p1 = new Equipo();
+		Equipo p2 = new Equipo();
+		
+		
+		
+		
 		
 	}
 
