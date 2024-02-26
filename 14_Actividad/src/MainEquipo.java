@@ -1,41 +1,83 @@
+import java.util.Scanner;
 
 public class MainEquipo {
 
 	public static void main(String[] args) {
-		/*
-		Equipo e1 = new Equipo("Esp", new String[3]);
 		
-		e1.jugadores[0] = "uno";
-		e1.jugadores[1] = "dos";
-		e1.jugadores[2] = "tres";
+		Scanner scanner = new Scanner(System.in);
+
+		Equipo[] arrayEquipos = new Equipo[3];
 		
-		Equipo e2 = new Equipo("Esp", new String[3]);
+		arrayEquipos[0] = new Equipo();
+		arrayEquipos[1] = new Equipo();
+		arrayEquipos[2] = new Equipo();
 		
-		e2.jugadores[0] = "uno";
-		e2.jugadores[1] = "dos";
-		e2.jugadores[2] = "tres";
+		for (Equipo equipo : arrayEquipos) {
+			pedirDatosEquipo(equipo, scanner);
+			System.out.println();
+		}
 		
-		System.out.println("Jugadores:");
-		e1.mostrarJugadores();
-		
-		System.out.println("Esta el jugador pasado por parametro? " + e1.estaElJugador("dos"));
-		
-		System.out.println("Cantidad de jugadores: " + e1.cantidadJugadores());
-		
-		System.out.println("El equipo es apto? " + e1.esApto());
-		
-		System.out.println("La lista de jugadores es igual? " + e1.esIgualListaJugadores(e2.jugadores));
-		
-		System.out.println("El equipo es igual al pasado por parametro? " + e1.esIgual(e2));
-		*/
-		
-		Equipo p1 = new Equipo();
-		Equipo p2 = new Equipo();
-		
-		
-		
-		
+		for (int i = 0; i < arrayEquipos.length - 1; i++) {
+			
+			System.out.println("Jugadores:");
+			arrayEquipos[i].mostrarJugadores();
+			System.out.println();
+			
+			System.out.println("Ingrese el nombre de un jugador:");
+			String jugador = scanner.nextLine();
+			System.out.println("Esta " + jugador + " en el equipo?: " + arrayEquipos[i].estaElJugador(jugador));
+			
+			System.out.println("Cantidad de jugadores: " + arrayEquipos[i].cantidadJugadores());
+			
+			System.out.println("El equipo '" + arrayEquipos[i].nombre + "' es apto? " + arrayEquipos[i].esApto());
+			System.out.println();
+					
+			System.out.println("Elige un equipo con su numero para comparar:");
+			int y = 0;
+			
+			for (Equipo equipo : arrayEquipos) {
+				System.out.println("[" + (y++) +"] " + equipo.nombre);;
+			}
+			int equipo = scanner.nextInt();
+			
+			
+			System.out.println("La lista de jugadores es igual? " + arrayEquipos[i].esIgualListaJugadores(arrayEquipos[equipo]));
+
+			System.out.println("El equipo es igual? " + arrayEquipos[i].esIgual(arrayEquipos[equipo]));
+			System.out.println();
+			
+			scanner.nextLine();
+			
+		}
 		
 	}
+		
+		private static void pedirDatosEquipo(Equipo equipo, Scanner scanner) {
+
+			System.out.println("NUEVO USUARIO");
+			System.out.println("-------------");
+
+			System.out.println("Ingresa un [Nombre]:");
+			equipo.nombre = scanner.nextLine();
+
+			System.out.println("Ingresa la cantidad de [Jugadores posibles]:");
+			int cantidad = scanner.nextInt();
+			scanner.nextLine();
+
+			String[] jugadores = new String[cantidad];
+			equipo.jugadores = jugadores;
+
+			for (int i = 1; i <= jugadores.length; i++) {
+				System.out.println("Ingresa el nombre del [Jugador " + i + "]:");
+				String nombre = scanner.nextLine();
+				if (!nombre.isBlank()) {
+					equipo.jugadores[i - 1] = nombre;
+				} else {
+					System.err.println("-> Vuelve a intentarlo.");
+					System.out.println();
+					i--;
+				}
+			}
+		}
 
 }
