@@ -1,5 +1,6 @@
 package juegoMuniemon;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainMuniemon {
@@ -13,9 +14,12 @@ public class MainMuniemon {
 
 	public static void menuMuniemon(Scanner scanner) {
 		int opcion = 0;
+
 		Muniemon m1 = null;
 		Muniemon m2 = null;
 
+		
+		
 		do {
 			System.out.println(" --------------------------------------");
 			System.out.println("|             MUNIEMON                 |");
@@ -34,6 +38,7 @@ public class MainMuniemon {
 			switch (opcion) {
 			case 1:
 				scanner.nextLine();
+
 				m1 = darDeAltaMuniemon(scanner);
 				break;
 			case 2:
@@ -51,30 +56,17 @@ public class MainMuniemon {
 				break;
 			case 6:
 				m2.atacarMuniemon(m1);
+
 				break;
 			case 0:
 				System.out.println("Programa terminado.");
 				break;
 			default:
 				System.err.println("Opción incorrecta.");
-
 			}
-
 		} while (opcion != 0);
 
 	}
-
-	private static void mostrarDatosMuniemon(Muniemon muniemon) {
-		System.out.println(" ----------------------");
-		System.out.println("      " + muniemon.getNombre());
-		System.out.println(" ----------------------");
-		System.out.println("  Tipo    : " + muniemon.getTipo());
-		System.out.println("  Vida    : " + muniemon.getVida());
-		System.out.println("  Ataque  : " + muniemon.getAtaque());
-		System.out.println("  Defensa : " + muniemon.getDefensa());
-		System.out.println(" ----------------------");
-	}
-
 
 	public static Muniemon darDeAltaMuniemon(Scanner scanner) {
 		Muniemon muniemon = new Muniemon();
@@ -82,6 +74,7 @@ public class MainMuniemon {
 		System.out.println(" --------------------------");
 		System.out.println("|     DATOS DE MUNIEMON    |");
 		System.out.println(" --------------------------");
+
 		System.out.println("Escribe un nombre para tu Muniemon:");
 		muniemon.setNombre(scanner.nextLine());
 
@@ -93,12 +86,13 @@ public class MainMuniemon {
 
 		System.out.println("Ingresa su cantidad de defensa:");
 		muniemon.setDefensa(scanner.nextInt());
-
 		System.out.println();
+		
 		int posicion = 0;
 		System.out.println(" --------------------------");
 		System.out.println("|     TIPOS DE MUNIEMON    |");
 		System.out.println(" --------------------------");
+		
 		for (TipoMuniemon tipo : TipoMuniemon.values()) {
 			System.out.println("[" + posicion + "]" + tipo);
 			posicion++;
@@ -108,6 +102,17 @@ public class MainMuniemon {
 		muniemon.setTipo(TipoMuniemon.values()[scanner.nextInt()]);
 		
 		return muniemon;
+	}
+	
+	private static void mostrarDatosMuniemon(Muniemon muniemon) {
+		System.out.println(" ----------------------");
+		System.out.println("      " + muniemon.getNombre());
+		System.out.println(" ----------------------");
+		System.out.println("  Tipo    : " + muniemon.getTipo());
+		System.out.println("  Vida    : " + muniemon.getVida());
+		System.out.println("  Ataque  : " + muniemon.getAtaque());
+		System.out.println("  Defensa : " + muniemon.getDefensa());
+		System.out.println(" ----------------------");
 	}
 
 }
