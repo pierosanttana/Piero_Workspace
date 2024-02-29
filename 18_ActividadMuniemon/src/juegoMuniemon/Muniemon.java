@@ -46,6 +46,30 @@ public class Muniemon {
 		this.tipo = tipo;
 	}
 	
+	public void atacarMuniemon(Muniemon muniemon) {
+		int ataque = this.ataque - muniemon.getDefensa();
+		if(this.vida <= 0) {
+			System.out.println("No puedes atacar, tu vida es 0.");
+		}else if(muniemon.getVida() > 0) {
+			if(ataque > 0) {
+				muniemon.setVida(muniemon.getVida() - ataque);
+				System.out.print(this.nombre + " atacó a " + muniemon.getNombre());
+				System.out.println(", le quita " + ataque);
+				if(muniemon.getVida() <= 0) {
+					System.out.println(muniemon.getNombre() + " ha sido derrotado.");
+					muniemon.setVida(0);
+				}else {
+					System.out.println(muniemon.getNombre() + " ahora tiene " + muniemon.getVida() + " de vida.");
+				}
+			}else {
+				System.out.println("Tu ataque es muy debíl, no puedes ocasionar ningun daño. ");
+			}
+		}else if(muniemon.vida <= 0){
+			System.out.println("La vida de " + muniemon.getNombre() + " es 0, no puede pelear.");
+		}
+		
+	}
+	
 	
 	
 

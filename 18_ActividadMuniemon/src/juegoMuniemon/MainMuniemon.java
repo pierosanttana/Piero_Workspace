@@ -7,34 +7,50 @@ public class MainMuniemon {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		Muniemon muniemon = new Muniemon();
-		menuMuniemon(muniemon, scanner);
+		menuMuniemon(scanner);
 
 	}
 
-	public static void menuMuniemon(Muniemon muniemon, Scanner scanner) {
+	public static void menuMuniemon(Scanner scanner) {
 		int opcion = 0;
+		Muniemon m1 = null;
+		Muniemon m2 = null;
 
 		do {
-			System.out.println(" -----------------------------------");
-			System.out.println("|             MUNIEMON              |");
-			System.out.println("|            ----------             |");
-			System.out.println("|[1] Dar de alta Muniemon           |");
-			System.out.println("|[2] Mostrar datos del Muniemon     |");
-			System.out.println("|[0] Salir del programa             |");
-			System.out.println(" -----------------------------------");
+			System.out.println(" --------------------------------------");
+			System.out.println("|             MUNIEMON                 |");
+			System.out.println("|            ----------                |");
+			System.out.println("|[1] Dar de alta Primer Muniemon       |");
+			System.out.println("|[2] Dar de alta Segundo Muniemon      |");
+			System.out.println("|[3] Mostrar datos del 1° Muniemon     |");
+			System.out.println("|[4] Mostrar datos del 2° Muniemon     |");
+			System.out.println("|[5] Atacar 1° Muniemon a 2° Muniemon  |");
+			System.out.println("|[6] Atacar 2° Muniemon a 1° Muniemon  |");
+			System.out.println("|[0] Salir del programa                |");
+			System.out.println(" --------------------------------------");
 			System.out.println("Eligue una opción: ");
 			opcion = scanner.nextInt();
 
 			switch (opcion) {
 			case 1:
 				scanner.nextLine();
-				// clearConsole();
-				darDeAltaMuniemon(muniemon, scanner);
+				m1 = darDeAltaMuniemon(scanner);
 				break;
 			case 2:
-				mostrarDatosMuniemon(muniemon);
-				// System.out.println(muniemon.toString());
+				scanner.nextLine();
+				m2 = darDeAltaMuniemon(scanner);
+				break;
+			case 3:
+				mostrarDatosMuniemon(m1);
+				break;
+			case 4:
+				mostrarDatosMuniemon(m2);
+				break;
+			case 5:
+				m1.atacarMuniemon(m2);
+				break;
+			case 6:
+				m2.atacarMuniemon(m1);
 				break;
 			case 0:
 				System.out.println("Programa terminado.");
@@ -52,7 +68,6 @@ public class MainMuniemon {
 		System.out.println(" ----------------------");
 		System.out.println("      " + muniemon.getNombre());
 		System.out.println(" ----------------------");
-		//System.out.println(" Nombre: " + muniemon.getNombre());
 		System.out.println("  Tipo    : " + muniemon.getTipo());
 		System.out.println("  Vida    : " + muniemon.getVida());
 		System.out.println("  Ataque  : " + muniemon.getAtaque());
@@ -60,18 +75,13 @@ public class MainMuniemon {
 		System.out.println(" ----------------------");
 	}
 
-	private static void clearConsole() {
-		for (int i = 0; i < 15; i++) {
-			System.out.println();
-		}
 
-	}
-
-	public static Muniemon darDeAltaMuniemon(Muniemon muniemon, Scanner scanner) {
+	public static Muniemon darDeAltaMuniemon(Scanner scanner) {
+		Muniemon muniemon = new Muniemon();
+		
 		System.out.println(" --------------------------");
 		System.out.println("|     DATOS DE MUNIEMON    |");
 		System.out.println(" --------------------------");
-		System.out.println("    ");
 		System.out.println("Escribe un nombre para tu Muniemon:");
 		muniemon.setNombre(scanner.nextLine());
 
@@ -96,6 +106,7 @@ public class MainMuniemon {
 		System.out.println(" --------------------------");
 		System.out.println("Eligue el tipo:");
 		muniemon.setTipo(TipoMuniemon.values()[scanner.nextInt()]);
+		
 		return muniemon;
 	}
 
