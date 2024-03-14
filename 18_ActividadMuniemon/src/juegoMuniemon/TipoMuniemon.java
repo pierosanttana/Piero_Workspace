@@ -1,5 +1,5 @@
 package juegoMuniemon;
 
 public enum TipoMuniemon {
-	AGUA,TIERRA,FUEGO, PLANTA,VOLADOR
+	AGUA,FUEGO,PLANTA
 }

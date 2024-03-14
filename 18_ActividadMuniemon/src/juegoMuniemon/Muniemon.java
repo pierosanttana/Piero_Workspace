@@ -3,15 +3,16 @@ package juegoMuniemon;
 public class Muniemon {
 
 	private String nombre;
-	private int vida;
-	private int ataque;
-	private int defensa;
+	private double vida;
+	private double ataque;
+	private double defensa;
+	private double velocidad;
 	private TipoMuniemon tipo;
 
 	@Override
 	public String toString() {
 		return "Muniemon [nombre=" + nombre + ", vida=" + vida + ", ataque=" + ataque + ", defensa=" + defensa
-				+ ", tipo=" + tipo + "]";
+				+ ", velocidad=" + velocidad + ", tipo=" + tipo + "]";
 	}
 
 	public String getNombre() {
@@ -22,28 +23,36 @@ public class Muniemon {
 		this.nombre = nombre;
 	}
 
-	public int getVida() {
+	public double getVida() {
 		return vida;
 	}
 
-	public void setVida(int vida) {
+	public void setVida(double vida) {
 		this.vida = vida;
 	}
 
-	public int getAtaque() {
+	public double getAtaque() {
 		return ataque;
 	}
 
-	public void setAtaque(int ataque) {
+	public void setAtaque(double ataque) {
 		this.ataque = ataque;
 	}
 
-	public int getDefensa() {
+	public double getDefensa() {
 		return defensa;
 	}
 
-	public void setDefensa(int defensa) {
+	public void setDefensa(double defensa) {
 		this.defensa = defensa;
+	}
+
+	public double getVelocidad() {
+		return velocidad;
+	}
+
+	public void setVelocidad(double velocidad) {
+		this.velocidad = velocidad;
 	}
 
 	public TipoMuniemon getTipo() {
@@ -54,61 +63,67 @@ public class Muniemon {
 		this.tipo = tipo;
 	}
 
-	/* public void atacarMuniemon(Muniemon muniemon) {
-		int ataque = this.ataque - muniemon.getDefensa();
-
+	public void atacarMuniemon(Muniemon muniemon) {
 		if (this.vida <= 0) {
 			System.out.println(this.nombre + " no puede atacar, su vida es 0.");
+			return;
+		}
+
+		if (muniemon.getVida() <= 0) {
+			System.out.println("La vida de " + muniemon.getNombre() + " es 0, no puede pelear.");
+			return;
+		}
+
+		double ataque = 0;
+		ataque = comprobarTipo(muniemon);
+
+		ataque = ataque - muniemon.getDefensa();
+
+		if (ataque <= 0) {
+			System.out.println("Tu ataque es muy débil, no puedes ocasionar ningún daño.");
+			return;
+		}
+
+		System.out.print(this.nombre + " atacó a " + muniemon.getNombre());
+		System.out.println(", le quita " + ataque);
+		muniemon.setVida(muniemon.getVida() - ataque);
+
+		if (muniemon.getVida() <= 0) {
+			System.out.println(muniemon.getNombre() + " ha sido derrotado.");
+			muniemon.setVida(0);
 		} else {
-			if (muniemon.getVida() <= 0) {
-				System.out.println("La vida de " + muniemon.getNombre() + " es 0, no puede pelear.");
-			} else {
-				if (ataque > 0) {
-					muniemon.setVida(muniemon.getVida() - ataque);
-					System.out.print(this.nombre + " atacó a " + muniemon.getNombre());
-					System.out.println(", le quita " + ataque);
-					if (muniemon.getVida() <= 0) {
-						System.out.println(muniemon.getNombre() + " ha sido derrotado.");
-						muniemon.setVida(0);
-					} else {
-						System.out.println(muniemon.getNombre() + " ahora tiene " + muniemon.getVida() + " de vida.");
-					}
-				} else {
-					System.out.println("Tu ataque es muy debíl, no puedes ocasionar ningun daño. ");
-				}
-			}
+			System.out.println(muniemon.getNombre() + " ahora tiene " + muniemon.getVida() + " de vida.");
 		}
 	}
-	*/
-	
-	public void atacarMuniemon(Muniemon muniemon) {
-	    if (this.vida <= 0) {
-	        System.out.println(this.nombre + " no puede atacar, su vida es 0.");
-	        return;
-	    }
 
-	    if (muniemon.getVida() <= 0) {
-	        System.out.println("La vida de " + muniemon.getNombre() + " es 0, no puede pelear.");
-	        return;
-	    }
+	private double comprobarTipo(Muniemon muniemon) {
+		double ataque = this.ataque;
+		switch (this.tipo) {
+		case FUEGO:
+			switch (muniemon.getTipo()) {
+			case PLANTA:
+				return ataque = this.ataque * 1.50;
+			default:
+				break;
+			}
+		case AGUA:
+			switch (muniemon.getTipo()) {
+			case FUEGO:
+				return ataque = this.ataque * 1.50;
+			default:
+				break;
+			}
+			break;
+		case PLANTA:
+			switch (muniemon.getTipo()) {
+			case AGUA:
+				return ataque = this.ataque * 1.50;
+			default:
+				break;
+			}
 
-	    int ataque = this.ataque - muniemon.getDefensa();
+		}
 
-	    if (ataque <= 0) {
-	        System.out.println("Tu ataque es muy débil, no puedes ocasionar ningún daño.");
-	        return;
-	    }
-
-	    System.out.print(this.nombre + " atacó a " + muniemon.getNombre());
-	    System.out.println(", le quita " + ataque);
-	    muniemon.setVida(muniemon.getVida() - ataque);
-
-	    if (muniemon.getVida() <= 0) {
-	        System.out.println(muniemon.getNombre() + " ha sido derrotado.");
-	        muniemon.setVida(0);
-	    } else {
-	        System.out.println(muniemon.getNombre() + " ahora tiene " + muniemon.getVida() + " de vida.");	        
-	    }
+		return ataque;
 	}
-
 }
