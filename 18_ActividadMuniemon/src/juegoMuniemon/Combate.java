@@ -42,29 +42,29 @@ public class Combate {
 	private void combate(Muniemon muniemon1, Muniemon muniemon2) {
 		Scanner scanner = new Scanner(System.in);
 
-		 do {
-
-			 if (comprobarGanador()) {
-				 break;
-			 }
+		do {
 			muniemon1.atacarMuniemon(muniemon2);
 			System.out.println();
-			System.out.println("Pulsa enter para continuar...");
-			scanner.nextLine();
 			if (comprobarGanador()) {
 				break;
 			}
+			System.out.println("Pulsa enter para continuar...");
+			scanner.nextLine();
 			muniemon2.atacarMuniemon(muniemon1);
 			System.out.println();
+			if (comprobarGanador()) {
+				break;
+			}
 			System.out.println("Pulsa enter para continuar...");
 			scanner.nextLine();
 			System.out.println();
 
-		}while (muniemon1.getVida() > 0 && muniemon2.getVida() > 0);
+		} while (muniemon1.getVida() > 0 && muniemon2.getVida() > 0);
 
 	}
 
-	private boolean comprobarGanador() {
+	
+	  	private boolean comprobarGanador() {
 		if (muniemon1.getVida() == 0) {
 			System.out.println(muniemon2.getNombre() + " ganó.");
 			return true;
@@ -75,6 +75,6 @@ public class Combate {
 			return true;
 		}
 		return false;
-
 	}
+	 
 }

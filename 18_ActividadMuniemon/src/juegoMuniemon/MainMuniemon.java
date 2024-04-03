@@ -38,18 +38,25 @@ public class MainMuniemon {
 			switch (opcion) {
 			case "1":
 				if(listaMuniemon.size() < 2) {
-				listaMuniemon.add(darDeAltaMuniemon(scanner));
-				}
-				else{
+					listaMuniemon.add(darDeAltaMuniemon(scanner));
+				}else {
 					System.out.println("No se pueden dar de alta más Muniemons");
 				}
 				break;
 			case "2":
-				mostrarDatosMuniemon(listaMuniemon);
+				if(!listaMuniemon.isEmpty()) {	
+					mostrarDatosMuniemon(listaMuniemon);
+				}else {
+				System.out.println("Debes agregar almenos '1' Muniemon. ");
+				}
 				break;
 			case "3":
+				if(listaMuniemon.size() == 2) {
 				combate = new Combate(listaMuniemon.get(0),listaMuniemon.get(1));
 				combate.empezarCombate();
+				}else {
+					System.out.println("Tienes que agregar como minimo '2' Muniemons");
+				}
 				break;
 			
 			case "0":
@@ -103,17 +110,17 @@ public class MainMuniemon {
 	}
 	
 	private static void mostrarDatosMuniemon(ArrayList<Muniemon> listaMuniemon) {
-		for (Muniemon muniemon : listaMuniemon) {
-			System.out.println(" ----------------------");
-			System.out.println("      " + muniemon.getNombre());
-			System.out.println(" ----------------------");
-			System.out.println("  Tipo      : " + muniemon.getTipo());
-			System.out.println("  Vida      : " + muniemon.getVida());
-			System.out.println("  Ataque    : " + muniemon.getAtaque());
-			System.out.println("  Defensa   : " + muniemon.getDefensa());
-			System.out.println("  Velocidad : " + muniemon.getVelocidad());
-			System.out.println(" ----------------------");
-		}
+			for (Muniemon muniemon : listaMuniemon) {
+				System.out.println(" ----------------------");
+				System.out.println("      " + muniemon.getNombre());
+				System.out.println(" ----------------------");
+				System.out.println("  Tipo      : " + muniemon.getTipo());
+				System.out.println("  Vida      : " + muniemon.getVida());
+				System.out.println("  Ataque    : " + muniemon.getAtaque());
+				System.out.println("  Defensa   : " + muniemon.getDefensa());
+				System.out.println("  Velocidad : " + muniemon.getVelocidad());
+				System.out.println(" ----------------------");
+			}
 	}
 
 }
