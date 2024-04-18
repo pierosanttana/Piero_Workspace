@@ -19,9 +19,6 @@ public class MainMuniemon {
 		Combate combate;
 		
 		
-
-		
-		
 		do {
 			System.out.println(" --------------------------------------");
 			System.out.println("|             MUNIEMON                 |");

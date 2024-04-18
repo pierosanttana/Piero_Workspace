@@ -13,22 +13,6 @@ public class Combate {
 
 	}
 
-	public Muniemon getMuniemon1() {
-		return muniemon1;
-	}
-
-	public void setMuniemon1(Muniemon muniemon1) {
-		this.muniemon1 = muniemon1;
-	}
-
-	public Muniemon getMuniemon2() {
-		return muniemon2;
-	}
-
-	public void setMuniemon2(Muniemon muniemon2) {
-		this.muniemon2 = muniemon2;
-	}
-
 	public void empezarCombate() {
 
 		if (muniemon1.getVelocidad() > muniemon2.getVelocidad()) {
