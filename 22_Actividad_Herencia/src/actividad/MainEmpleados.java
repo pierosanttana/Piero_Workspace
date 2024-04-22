@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class MainEmpleados {
 	
 	public static ArrayList<Empleado> listaGeneral;
-
 	static Scanner scanner;
 
 	public static void main(String[] args) {
@@ -18,10 +17,10 @@ public class MainEmpleados {
 
 	private static void menu() {
 		scanner = new Scanner(System.in);
+		listaGeneral = new ArrayList<Empleado>();
+
 		String opcion = "";
-
-		ArrayList<Empleado> listaGeneral = new ArrayList<Empleado>();
-
+		
 		do {
 			System.out.println(" --------------------------------------");
 			System.out.println("|[1] Dar de alta un Empleado           |");
@@ -36,16 +35,16 @@ public class MainEmpleados {
 
 			switch (opcion) {
 			case "1":
-				darDeAltaEmpleado(listaGeneral);
+				darDeAltaEmpleado();
 				break;
 			case "2":
-				mostrarEmpleados(listaGeneral);
+				mostrarEmpleados();
 				break;
 			case "3":
-				mostrarSalarioEmpleado(listaGeneral);
+				mostrarSalarioEmpleado();
 				break;
 			case "4":
-				costeTotalEmpresa(listaGeneral);
+				costeTotalEmpresa();
 				break;
 			case "0":
 				System.out.println("Programa terminado.");
@@ -57,8 +56,7 @@ public class MainEmpleados {
 		} while (!opcion.equals("0"));
 	}
 
-	private static void darDeAltaEmpleado(ArrayList<Empleado> listaGeneral) {
-		scanner = new Scanner(System.in);
+	private static void darDeAltaEmpleado() {
 
 		String opcion = "";
 
@@ -68,7 +66,7 @@ public class MainEmpleados {
 			System.out.println("|[1] Programador         |");
 			System.out.println("|[2] Jefe de Proyecto    |");
 			System.out.println("|[3] Director            |");
-			System.out.println("|[0] Salir del programa  |");
+			System.out.println("|[0] Salir               |");
 			System.out.println(" ------------------------");
 			System.out.println("Eligue una opción: ");
 
@@ -82,7 +80,7 @@ public class MainEmpleados {
 				listaGeneral.add(darDeAltaJefeDeProyecto());
 				break;
 			case "3":
-				listaGeneral.add(darDeAltaDirector(listaGeneral));
+				listaGeneral.add(darDeAltaDirector());
 				break;
 			case "0":
 				break;
@@ -119,25 +117,27 @@ public class MainEmpleados {
 
 	}
 
-	private static Director darDeAltaDirector(ArrayList<Empleado> listaGeneral) {
+	private static Director darDeAltaDirector() {
 		Director director = new Director();
-
+		
+		System.out.println("- Alta Director -");
+		
 		director.setNombre(pedirNombre());
 		director.setDni(pedirDni());
 		director.setSueldoBase(pedirSueldo());
-		director.setListaEmpleados(seleccionarEmpleado(listaGeneral));
+		director.setListaEmpleados(seleccionarEmpleado());
 
 		return director;
 
 	}
 
-	private static ArrayList<Empleado> seleccionarEmpleado(ArrayList<Empleado> listaGeneral) {
+	private static ArrayList<Empleado> seleccionarEmpleado() {
 		ArrayList<Empleado> listaEmpleadosDelDirector = new ArrayList<Empleado>();
 		String opcion = "";
 		
 		do {
 			System.out.println("Seleciona un Empleado o pulsa 's' para Salir");
-			mostrarEmpleados(listaGeneral);
+			mostrarEmpleados();
 			opcion = scanner.nextLine();
 			
 			if (!opcion.equalsIgnoreCase("s")) {
@@ -150,27 +150,33 @@ public class MainEmpleados {
 		return listaEmpleadosDelDirector;
 	}
 
-	private static void mostrarEmpleados(ArrayList<Empleado> listaGeneral) {
+	private static void mostrarEmpleados() {
 		int contador = 0;
+		
+		if(listaGeneral.size() > 0) {
 		for (Empleado empleado : listaGeneral) {
 			System.out.println("[" + contador++ + "]" + empleado);
+		}
+		}else {
+			System.out.println("No hay ningun Empleado dado de alta.");
 		}
 
 	}
 
-	private static void mostrarSalarioEmpleado(ArrayList<Empleado> listaGeneral) {
+	private static void mostrarSalarioEmpleado() {
 
-		mostrarEmpleados(listaGeneral);
+		mostrarEmpleados();
 		
+		if(listaGeneral.size() > 0) {
 		System.out.println("Elige un empleado: ");
 		String sOpcion = scanner.nextLine();
+	
 		int iOpcion = Integer.parseInt(sOpcion);
-
 		System.out.println(listaGeneral.get(iOpcion).SalarioTotal());
-
+		}
 	}
 
-	private static void costeTotalEmpresa(ArrayList<Empleado> listaGeneral) {
+	private static void costeTotalEmpresa() {
 
 		double costeTotal = 0;
 		for (Empleado empleado : listaGeneral) {

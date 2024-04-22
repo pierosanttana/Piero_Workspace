@@ -4,7 +4,7 @@ public class Coche {
 	private int id;
 	private String matricula;
 	private String marca;
-	static private int contadorID;
+	private static int contadorID;
 	
 	public static final String TOYOTA = "TOYOTA";
 	public static final String RENAULT = "RENAULT";

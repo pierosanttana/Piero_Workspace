@@ -21,7 +21,6 @@ public class Director extends Empleado {
 		this.listaEmpleados = listaEmpleados;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Director [listaEmpleados=" + listaEmpleados + ", toString()=" + super.toString() + "]";

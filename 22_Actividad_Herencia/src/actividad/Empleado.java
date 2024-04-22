@@ -5,9 +5,8 @@ public class Empleado {
 	private String dni;
 	private String nombre;
 	private double sueldoBase;
-	private static int contador;
 	
-	
+	private static int contadorID;
 	
 	@Override
 	public String toString() {
@@ -15,15 +14,15 @@ public class Empleado {
 	}
 	
 	public Empleado() {
-		this.id = contador;
-		contador++;
+		this.id = contadorID;
+		contadorID++;
 	}
 	public int getId() {
 		return id;
 	}
 	
-	public static int getContador() {
-		return contador;
+	public static int getContadorID() {
+		return contadorID;
 	}
 	public String getDni() {
 		return dni;
