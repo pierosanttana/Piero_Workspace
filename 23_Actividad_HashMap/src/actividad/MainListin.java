@@ -3,16 +3,17 @@ package actividad;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Main {
+public class MainListin {
 
 	static Scanner scanner;
 
 	public static void main(String[] args) {
 		scanner = new Scanner(System.in);
 
-		HashMap<String, Integer> HashMapNombreTelefono = new HashMap<>();
+		HashMap<String, Long> HashMapNombreTelefono = new HashMap<>();
 
 		for (int i = 0; i < 5; i++) {
+			System.out.println("[" + (i + 1) + "]");
 			HashMapNombreTelefono.put(pedirNombre(), pedirTelefono());
 		}
 
@@ -23,10 +24,10 @@ public class Main {
 
 	}
 
-	private static int pedirTelefono() {
+	private static long pedirTelefono() {
 		System.out.println("Ingresa un número de teleno:");
 		String numeroTelf = scanner.nextLine();
-		int iNumeroTelf = Integer.parseInt(numeroTelf);
+		long iNumeroTelf = Long.parseLong(numeroTelf);
 		return iNumeroTelf;
 	}
 

@@ -10,7 +10,7 @@ public class Empleado {
 	
 	@Override
 	public String toString() {
-		return "Empleado [ID=" + id +", Dni=" + dni + ", nombre=" + nombre + ", sueldoBase=" + sueldoBase + "]";
+		return "[ID=" + id +", Dni=" + dni + ", nombre=" + nombre + ", sueldoBase=" + sueldoBase + "]";
 	}
 	
 	public Empleado() {
