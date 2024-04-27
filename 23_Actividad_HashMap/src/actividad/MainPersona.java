@@ -17,7 +17,6 @@ public class MainPersona {
 	private static void menu() {
 
 		scanner = new Scanner(System.in);
-
 		HashMapPersonas = new HashMap<>();
 
 		String opcion = "";

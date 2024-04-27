@@ -26,7 +26,8 @@ public class Director extends Empleado {
 		return "Director [listaEmpleados=" + listaEmpleados + ", toString()=" + super.toString() + "]";
 	}
 
-	public double salarioTotal(){
+	@Override
+	public double SalarioTotal(){
 		
 		return this.getSueldoBase() + (100 * this.listaEmpleados.size());
 	}
